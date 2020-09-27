@@ -1,0 +1,29 @@
+from urllib.request import urlopen, Request
+from bs4 import BeautifulSoup
+import  re
+for w in range(0,251,25):
+    url='https://movie.douban.com/top250?start='+str(w)+'&filter='
+    header={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36'}
+    ret = Request(url,headers=header)
+    html=urlopen(ret)
+    bs = BeautifulSoup(html,'html.parser')
+    haos = bs.find_all('em', {'class': ''})
+    names = bs.find_all('span', {'class': 'title'})
+    points = bs.find_all('span', {'class': 'rating_num'})
+    namelist=[]
+    for hao in haos:
+        hao = hao.get_text()
+    #    print(hao)
+    for point in points:
+        point=point.get_text()
+     #   print(point)
+    for name in names:
+        name=name.get_text()
+        if name[1] !='/':
+    #        print(name)
+            namelist.append(name)
+
+
+with open('douban250.txt','w') as file:
+    for hao,name,point in zip(haos,names,points):
+        file.write(hao,name,point)
