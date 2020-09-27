@@ -1,0 +1,12 @@
+from urllib.request import urlopen, Request
+from bs4 import BeautifulSoup
+import  re
+for w in range(0,251,25):
+    url='https://movie.douban.com/top250?start='+str(w)+'&filter='
+    header={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36'}
+    ret = Request(url,headers=header)
+    html=urlopen(ret)
+    bs = BeautifulSoup(html,'html.parser')
+    for link in bs.find_all('a',href=re.compile('subject')):
+        if 'href' in link.attrs:
+            print(link.attrs['href'])
