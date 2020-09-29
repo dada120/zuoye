@@ -2,7 +2,7 @@ with open(‘Walden.txt’,'r') as text: #打开文件      首先要有Walden.t
     #文件编码格式异常，解决办法：在文件打开的语句中添加
     #encoding = ' utf-8 '，注意添加在open()函数的最后。
     words = text.read().split()
-    print(words)
+    #print(words)
     for word in words:
-        print('{}{} 次'.format(word, words.count(words[1])))
-# word是一个词条，word[0]是单词，word[1]是单词出现的频率
+        print('{}：{} 次'.format(word, words.count(word)))
+# word是一个词条
