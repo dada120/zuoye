@@ -1,4 +1,4 @@
-filename='demo.py'
+filename='demo.py'    #格式错误在open（）函数的最后加上,encoding = ' utf-8 '
 with open(filename, 'r') as fp:
     lines = fp.readlines()
 maxLength = len(max(lines, key=len))
