@@ -1,4 +1,4 @@
-with open(‘Walden.txt’,'r') as text: #打开文件
+with open(‘Walden.txt’,'r') as text: #打开文件      首先要有Walden.txt存在
     #文件编码格式异常，解决办法：在文件打开的语句中添加
     #encoding = ' utf-8 '，注意添加在open()函数的最后。
     words = text.read().split()
