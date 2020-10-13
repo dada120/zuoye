@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*
-
 import tkinter as tk
 import tkinter.messagebox
 import random
@@ -14,10 +12,10 @@ s=random.randint(10,50) #随机生成
 label1 = tk.Label(game, fg ='Teal',text="游戏规则：系统随机生成10到50之间的一个站位，请你猜这个数。"
                                       "如果猜中系统将会提示你猜测成功，不幸如果猜错，"
                                       "每次轮到是3的被淘汰，留到最后的两位为赢家，祝你玩得开心！",
-                           wraplength=250,justify='center',font = ('微软雅黑',10))
+                           wraplength=250,justify='center',font = ('微软雅黑',12))
 label1.grid(row=0,padx=20, pady=8,columnspan=2,rowspan=2)
 
-label2 = tk.Label(game, text='请输入你的站位:',bg='LightSeaGreen',font = ('微软雅黑',10))
+label2 = tk.Label(game, text='请输入你的站位:',bg='LightSeaGreen',font = ('微软雅黑',12))
 label2.grid(row=2,column=0,sticky='w',padx=5)
 
 text = tk.Entry(game, width=20)
@@ -37,16 +35,16 @@ def hit():                           #定义一个函数，在鼠标触发确定
             tk.messagebox.showerror("警告", "Oh!只能输入数字")
         else:
                 guess_number = int(float(guess_number))
-            while len(list1) > 2:  # 最后剩余的两人为赢家
-                move(list1, 2)
-                list1.pop(0)
-            c, d = list1
-            tkinter.messagebox.showinfo("最后剩下的两个站位：" + str(c) + "，" + str(d))
+        while len(list1) > 2:  # 最后剩余的两人为赢家
+            move(list1, 2)
+            list1.pop(0)
+        c, d = list1
+        #tkinter.messagebox.showinfo('提示','最后剩下的两个站位： + str(c)+','+ str(d)')
 
-            if guess_number == c or guess_number == d:
-                tkinter.messagebox.showinfo("You win")
-            else:
-                tkinter.messagebox.showinfo("You lost")
+        if guess_number == c or guess_number == d:
+            tkinter.messagebox.showinfo('正确',"You win")
+        else:
+            tkinter.messagebox.showinfo('失败',"You lost")
                # if guess_number > answer:
                #     tkinter.messagebox.showinfo("错误", "Oh~你猜的数字太大啦")
                # if guess_number < answer:
@@ -54,7 +52,7 @@ def hit():                           #定义一个函数，在鼠标触发确定
                # if guess_number == answer:
                #     tkinter.messagebox.showinfo("正确", "Oh~恭喜你，猜对啦!")
 
-button2 = tkinter.Button(game, text='确定', command=hit,width=10,bg='RoyalBlue',font = ('微软雅黑',10))
+button2 = tkinter.Button(game, text='确定', command=hit,width=10,bg='RoyalBlue',font = ('微软雅黑',12))
 button2.grid(row=2,column=2,sticky='s',padx=8, pady=8)
 
 game.mainloop()
