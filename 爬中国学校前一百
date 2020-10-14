@@ -1,0 +1,21 @@
+from urllib.request import urlopen, Request
+from bs4 import BeautifulSoup
+import re
+url = "http://www.shanghairanking.cn/rankings/bcur/202011"
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3947.100 Safari/537.36'}
+ret = Request(url, headers=headers)
+html = urlopen(ret)
+bs = BeautifulSoup(html, "html.parser")
+
+i=1
+alls=bs.find_all('tr')
+str=[]
+for all in alls:
+    i+=1
+    if i <=103:
+        str.append(all.text)
+s=str[1:]
+for i in s :
+    i = i.split()
+    print('{0:^10}\t{1:{5}^10}\t{2:^20}\t{3:^10}\t{4:^10}'.format(i[0],i[1],i[2],i[3],i[4],chr(12288)))
