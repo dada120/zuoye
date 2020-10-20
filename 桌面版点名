@@ -1,7 +1,9 @@
 from tkinter import *
 import time
 
-
+root = Tk()
+root.title("Aloe")
+root.geometry('300x200')
 class RandomName(Frame):    #随机取人主体
     def __init__(self, parent=None, **kw):
         Frame.__init__(self, parent, kw)
@@ -9,7 +11,9 @@ class RandomName(Frame):    #随机取人主体
         self._start = 0.0
         self._elapsedtime = 0.0
         self._running = False
-        self.timestr = StringVar()
+        self.timestr = StringVar()   #Tkinter中一些组件(Button, Label等) 如果设置一个textvariable属性为一个StringVar(IntVar, DoubleVar)对象。
+                                     # 当这个对象的值被重新设置的时候，组件上的显示文字就会自动变成新的值。
+                                     #应该是取相应的数组变量，整型变量，和双浮点变量
         self.makeWidgets()
 
     def makeWidgets(self):       #  定义标签栏 '制作时间标签
@@ -20,7 +24,7 @@ class RandomName(Frame):    #随机取人主体
         # 更新显示内容
         self._elapsedtime = time.time() - self._start
         self.set_name(self._elapsedtime)  # 设置显示内容 ,elapsedtime：执行当前任务所花费的总时间
-        self._timer = self.after(50, self.update)  # 刷新界面
+        self._timer = self.after(100, self.update)  # 刷新界面
 
     def set_name(self, elap):
         # 随机产生姓名的详细代码
@@ -53,9 +57,7 @@ class RandomName(Frame):    #随机取人主体
         time.sleep(0.1)     #延迟0.1秒执行
         root.destroy()
 if __name__ == '__main__':
-    root = Tk()
-    root.title("Aloe")
-    root.geometry('250x150')
+
     sw = RandomName(root)
     sw.name_label()
     root.mainloop()
