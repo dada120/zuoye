@@ -1,6 +1,7 @@
 from tkinter import *
 import time
 
+
 root = Tk()
 root.title("Aloe")
 root.geometry('300x200')
@@ -32,6 +33,9 @@ class RandomName(Frame):    #随机取人主体
         name_list = ['周嘉铖', '钱珑超', '徐展', '尤桉哲','钱涛', '黄舒怡', '胡志辉',  '吴昭耀',  '陈萌萌',  '郑巧悦',  '陈艳', '梁明皓',  '蒋俊超', '徐颖',  '倪宏涛', '潘梦倩',  '俞靖庐', '王中阳',  '毛贞强',  '张嫒',  '朱速航',  '陈涛',  '陆元超',  '叶振雄',  '奚申杰', '叶梦婷', '徐丽丽',  '潘艳']
         self.timestr.set(name_list[cur])
 
+
+
+
     def Start(self):
         # 开始
         if not self._running:
@@ -47,10 +51,18 @@ class RandomName(Frame):    #随机取人主体
             self.set_name(self._elapsedtime)
             self._running = False
 
+    def Music(self):
+        import winsound  # #python自带的tkinter貌似不支持音频,在win下你可以用winsound来弄一点简单的,像一些非wav格式,如mp3,aac,,就需要解码后再播放,
+        winsound.PlaySound(r"C:\\Users\\Administrator\\Desktop\\鼓声.wav", winsound.SND_FILENAME | winsound.SND_ASYNC)
+
+
+
+
     def name_label(self):
         # 显示窗口
         self.pack(side=TOP)
-        Button(self, text='start', command=self.Start, width=10, height=2).pack(side=LEFT)
+        Button(self, text='Play', command=self.Music,width=10, height=2,foreground='blue').pack(side=LEFT)
+        Button(self, text='start', command=self.Start,  width=10, height=2).pack(side=LEFT)
         Button(self, text='stop', command=self.Stop, width=10, height=2).pack(side=LEFT)
         Button(self, text='quit', command=self.closegame, width=10, height=2).pack(side=LEFT)
     def closegame(self):    #登出
@@ -61,3 +73,59 @@ if __name__ == '__main__':
     sw = RandomName(root)
     sw.name_label()
     root.mainloop()
+
+
+'''
+PlaySound函数的声明为：
+BOOL PlaySound(LPCSTR pszSound, HMODULE hmod,DWORD fdwSound);
+1、参数pszSound是指定了要播放声音的字符串，该参数可以是WAVE文件的名字，或是WAV资源的名字，或是内存中声音数据的指针，或是在系统注册表WIN.INI中定义的系统事件声音。如果该参数为NULL则停止正在播放的声音。
+
+2、参数hmod是应用程序的实例句柄，当播放WAV资源时要用到该参数，否则它必须为NULL。参数fdwSound是标志的组合，如下表所示。若成功则函数返回TRUE，否则返回FALSE。
+
+3、播放标志以及含义：
+
+SND_APPLICATION
+用应用程序指定的关联来播放声音。
+
+SND_ALIAS
+pszSound参数指定了注册表或WIN.INI中的系统事件的别名。
+
+SND_ALIAS_ID
+pszSound参数指定了预定义的声音标识符。
+
+SND_ASYNC
+用异步方式播放声音，PlaySound函数在开始播放后立即返回。
+
+SND_FILENAME
+pszSound参数指定了WAVE文件名。
+
+SND_LOOP
+重复播放声音，必须与SND_ASYNC标志一块使用。
+
+SND_MEMORY
+播放载入到内存中的声音，此时pszSound是指向声音数据的指针。
+
+SND_NODEFAULT
+不播放缺省声音，若无此标志，则PlaySound在没找到声音时会播放缺省声音。
+
+SND_NOSTOP
+PlaySound不打断原来的声音播出并立即返回FALSE。
+
+SND_NOWAIT
+如果驱动程序正忙则函数就不播放声音并立即返回。
+
+SND_PURGE
+停止所有与调用任务有关的声音。若参数pszSound为NULL，就停止所有的声音，否则，停止pszSound指定的声音。
+
+SND_RESOURCE
+pszSound参数是WAVE资源的标识符，这时要用到hmod参数。
+
+SND_SYNC
+同步播放声音，在播放完后PlaySound函数才返回。
+
+举例：第一种方法是直接播出声音文件，相应的代码为：
+
+PlaySound("c:\\win95\\media\\The Microsoft Sound.wav", NULL, SND_FILENAME | SND_ASYNC);
+
+注意参数中的路径使用两个连续的反斜杠转义代表一个反斜杠。
+'''
