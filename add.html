@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask练习</title>
+</head>
+<body>
+        <h2>输入两个数求和</h2>
+        <form method='get'  action='/hello'>
+         <table>
+          <p>使用表单计算两个数的和</p>
+          <tr><td>被加数</td><td><input type='text' name='n1' value = {{n1}} /></td></tr>
+         <tr><td>加数</td><td><input type='text' name='n2' value = {{n2}} /></td></tr>
+         <tr><td>和</td><td><input type='text' name='n3'  value= {{n3}} /></td></tr>
+         </table>
+         <button name="return" type="submit" value="return">home</button>
+        </form>
+</body>
+</html>
