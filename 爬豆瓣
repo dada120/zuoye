@@ -17,13 +17,13 @@ for w in range(0,251,25):
     for point in points:
         point=point.get_text()
      #   print(point)
-    for name in names:
+    for name in names:                           #for循环选name
         name=name.get_text()
         if name[1] !='/':
     #        print(name)
             namelist.append(name)
 
 
-with open('douban250.txt','w') as file:
+with open('douban250.txt','w') as file:           #加入写入文件
     for hao,name,point in zip(haos,names,points):
         file.write(hao,name,point)
