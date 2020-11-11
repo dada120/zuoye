@@ -1,0 +1,28 @@
+from urllib.request import urlopen,Request
+from bs4 import BeautifulSoup
+import os
+
+def SpiderBS(url):
+    url = "http://www.fortunechina.com/fortune500/c/2020-08/10/content_372148.htm"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3947.100 Safari/537.36'}
+    ret = Request(url, headers=headers)
+    html = urlopen(ret)
+    bs = BeautifulSoup(html, "html.parser")
+
+    return
+
+def uuzuowenSpider(source):
+    url = 'htps://www.uuzuowen.com'
+    bs = SpiderBS(url + source)
+    title = bs.find('h2',{'class':'articleH22'}).getText()
+    print('正在爬取{0}'.format(title))
+
+    try:
+        print('创建文件夹[[{0}]'.format(title))
+        os.mkdir(title)
+    except:
+        print('名为[{0}]的文件夹已存在'.format(title))
+    else:
+        print('创建成功,开始爬取')
+    div = bs.find('div',{'class':'mainBox'}).find('div',{'class':'listbox'}).find
