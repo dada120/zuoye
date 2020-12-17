@@ -26,6 +26,6 @@ for link in pic:
     #print(link)
     t = t+1
     url = '{}'.format(link)
-    dir = os.path.abspath(r'C:\Users\user\Desktop\列维坦画作')
+    dir = os.path.abspath(r'C:\Users\user\Desktop\列维坦画作') #注意保存路径
     work_path=os.path.join(dir, '{}.jepg').format(t)
     urlretrieve(url, work_path)
